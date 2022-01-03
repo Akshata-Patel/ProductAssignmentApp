@@ -1,0 +1,77 @@
+﻿@page
+@model Product.App.Pages.Products.CreateModel
+
+<div class="app-page-title">
+    <div class="page-title-wrapper mb-3">
+        <div class="page-title-heading">
+            <div class="page-title-icon">
+                <i class="pe-7s-drawer icon-gradient bg-happy-itmeo">
+                </i>
+            </div>
+            <h4>
+                New Product
+            </h4>
+        </div>
+    </div>
+</div>
+<div class="main-card mb-3 card col-6">
+    <div class="card-body">
+        <form method="post" class="needs-validation" novalidate>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <div class="form-group bmd-form-group">
+                        <label asp-for="Product.BrandId">Brand Name</label>
+                        <select asp-for="Product.BrandId"
+                                class="form-control"
+                                asp-items="@(new SelectList((List<Product.DB.Models.Brand>)ViewData["ListofBrands"],"BrandId", "BrandName"))">
+                        </select>
+                        <span asp-validation-for="Product.BrandId" class="text-danger"></span>
+                        <div class="valid-feedback">
+                            Looks good!
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Product.ProductName">Product Name</label>
+                    <input type="text" class="form-control" asp-for="Product.ProductName" placeholder="Product Name" value="" required>
+                    <span asp-validation-for="Product.ProductName" class="text-danger"></span>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Product.CategoryId">Category Id</label>
+                    <input type="text" class="form-control" asp-for="Product.CategoryId" placeholder="Category Id" value="" required>
+                    <span asp-validation-for="Product.CategoryId" class="text-danger"></span>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Product.ModelYear">Model Year</label>
+                    <input type="text" class="form-control" asp-for="Product.ModelYear" placeholder="Model Year" value="" required>
+                    <span asp-validation-for="Product.ModelYear" class="text-danger"></span>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+                <div class="col-md-12 mb-3">
+                    <label asp-for="Product.ListPrice">List Price</label>
+                    <input type="text" class="form-control" asp-for="Product.ListPrice" placeholder="List Price" value="" required>
+                    <span asp-validation-for="Product.ListPrice" class="text-danger"></span>
+                    <div class="valid-feedback">
+                        Looks good!
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" type="submit">Create</button>
+            <div class="clearfix"></div>
+        </form>
+    </div>
+</div>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,84 @@
+﻿@page
+@model Product.App.Pages.Products.IndexModel
+
+<div class="app-page-title pb-3">
+    <div class="page-title-wrapper">
+        <div class="page-title-actions">
+            <div class="clearfix">
+                <a asp-page="./Create" class="btn btn-info float-right">
+                    <i class="far fa fa-plus-square mr-2" data-toggle="tooltip" aria-haspopup="true" aria-expanded="false"></i>
+                    Add Product
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+@if (Model.Products != null)
+{
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="main-card mb-3 card">
+                <div class="card-body">
+                    <h5 class="card-title"></h5>
+                    <table class="mb-0 table table-hover" id="productTable">
+                        <thead>
+                            <tr>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].ProductId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].Brand)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].ProductName)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].CategoryId)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].ModelYear)
+                                </th>
+                                <th>
+                                    @Html.DisplayNameFor(model => model.Products[0].ListPrice)
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.Products)
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Brand.BrandName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ProductName)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CategoryId)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ModelYear)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.ListPrice)
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@{
+    <script>
+        $(document).ready(function () {
+            $('#productTable').DataTable();
+        });
+    </script>
+}
